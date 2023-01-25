@@ -23,7 +23,7 @@ function Game() {
         return null;
       case "win":
         return (
-          <div class="happy banner">
+          <div className="happy banner">
             <p>
               <strong>Congratulations!</strong> Got it in
               <strong>3 guesses</strong>.
@@ -32,7 +32,7 @@ function Game() {
         );
       case "lose":
         return (
-          <div class="sad banner">
+          <div className="sad banner">
             <p>
               Sorry, the correct answer is <strong>LEARN</strong>.
             </p>
