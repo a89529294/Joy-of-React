@@ -4,15 +4,18 @@ import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import Input from "../Input";
 import GuessResults from "../GuessResults/GuessResults";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
+  const myRef = React.useRef();
+  console.log(myRef);
 
   const status = (() => {
-    if (guesses.length >= 6 && guesses[guesses.length - 1] !== answer) return "lose";
+    if (guesses.length >= NUM_OF_GUESSES_ALLOWED && guesses[guesses.length - 1] !== answer) return "lose";
     if (guesses[guesses.length - 1] === answer) return "win";
     return "inprogress";
   })();
@@ -23,10 +26,14 @@ function Game() {
         return null;
       case "win":
         return (
-          <div className="happy banner">
+          <div
+            className="happy banner"
+            ref={(arg) => {
+              console.log(arg);
+            }}>
             <p>
               <strong>Congratulations!</strong> Got it in
-              <strong>3 guesses</strong>.
+              <strong> {guesses.length} guesses</strong>.
             </p>
           </div>
         );
